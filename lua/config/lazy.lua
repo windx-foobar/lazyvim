@@ -51,3 +51,9 @@ require("lazy").setup({
     },
   },
 })
+
+-- Автозагрузка .nvim.lua если есть в проекте
+local project_config = vim.fn.findfile(".nvim.lua", ".;")
+if project_config ~= "" then
+  dofile(vim.fn.fnamemodify(project_config, ":p"))
+end
