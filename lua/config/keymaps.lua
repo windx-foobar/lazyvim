@@ -15,3 +15,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     )
   end,
 })
+
+vim.keymap.set("n", "<leader>b[", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer to prev" })
+vim.keymap.set("n", "<leader>b]", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer to next" })
