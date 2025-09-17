@@ -1,5 +1,15 @@
 ---@type LazySpec
 return {
+  -- NOTE: Using mason rust-analyzer
+  {
+    "mason-org/mason.nvim",
+    optional = true,
+    opts = {
+      ensure_installed = { "rust-analyzer" },
+    },
+  },
+
+  -- NOTE: Using custom hotkeys to stronger usage `rust`
   {
     "mrcjkb/rustaceanvim",
     version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or "^6",
@@ -14,9 +24,9 @@ return {
               {
                 mode = "n",
                 buffer = buffnr,
-                { "<leader>cm", group = "macros", icon = { icon = icon, hl = hl }, noremap = true },
+                { "<leader>c<leader>m", group = "macros", icon = { icon = icon, hl = hl }, noremap = true },
                 {
-                  "<leader>cme",
+                  "<leader>c<leader>me",
                   function()
                     vim.cmd.RustLsp("expandMacro")
                   end,
@@ -26,28 +36,29 @@ return {
                 },
               },
             })
-
-            -- vim.keymap.set("n", "<leader>cme", function()
-            --   vim.cmd.RustLsp("expandMacro")
-            -- end, { desc = "Expand macro", buffer = buffnr, noremap = true })
           end,
-          default_settings = {
-            ["rust-analyzer"] = {
-              lru = {
-                capacity = 44,
-              },
-              cachePriming = {
-                enable = false,
-              },
-              procMacro = {
-                ignored = {
-                  ["async-trait"] = { "async_trait" },
-                },
-              },
-            },
-          },
         },
       }
     end,
   },
+
+  -- NOTE: Uncomment this is needed warns `async_trait`
+  -- {
+  --   "mrcjkb/rustaceanvim",
+  --   init = function(_)
+  --     vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, {
+  --       server = {
+  --         default_settings = {
+  --           ["rust-analyzer"] = {
+  --             procMacro = {
+  --               ignored = {
+  --                 ["async-trait"] = { "async_trait" },
+  --               },
+  --             },
+  --           },
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
 }
