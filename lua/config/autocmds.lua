@@ -7,6 +7,20 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "package.json", -- Указываем конкретное имя файла
+  callback = function()
+    -- Устанавливаем keymap только для package.json
+    vim.api.nvim_buf_set_keymap(
+      0,
+      "n",
+      "<leader>pp",
+      "<cmd>lua require('package-info').change_version()<cr>",
+      { noremap = true, silent = true, desc = "Install a different dependency version" }
+    )
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { ".env.*" },
   callback = function()
