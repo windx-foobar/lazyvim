@@ -7,9 +7,29 @@ return {
       vim.g.rustaceanvim = {
         server = {
           on_attach = function(_, buffnr)
-            vim.keymap.set("n", "<leader>cm", function()
-              vim.cmd.RustLsp("expandMacro")
-            end, { desc = "Expand macro", buffer = buffnr, noremap = true })
+            local wk = require("which-key")
+            local icon, hl = MiniIcons.get("file", ".rs")
+
+            wk.add({
+              {
+                mode = "n",
+                buffer = buffnr,
+                { "<leader>cm", group = "macros", icon = { icon = icon, hl = hl }, noremap = true },
+                {
+                  "<leader>cme",
+                  function()
+                    vim.cmd.RustLsp("expandMacro")
+                  end,
+                  desc = "Expand macro",
+                  icon = { icon = icon, hl = hl },
+                  noremap = true,
+                },
+              },
+            })
+
+            -- vim.keymap.set("n", "<leader>cme", function()
+            --   vim.cmd.RustLsp("expandMacro")
+            -- end, { desc = "Expand macro", buffer = buffnr, noremap = true })
           end,
           default_settings = {
             ["rust-analyzer"] = {
