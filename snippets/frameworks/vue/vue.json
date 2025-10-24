@@ -1,0 +1,15 @@
+{
+  "Vue Single File Component Setup Composition API": {
+    "prefix": "vbase-3-windx",
+    "body": [
+      "<script${1: setup}${2: lang=\"ts\"}>",
+      "",
+      "</script>",
+      "",
+      "<template>",
+      "\t${3}",
+      "</template>"
+    ],
+    "description": "Base for Vue File Setup Composition API with SCSS"
+  }
+}
