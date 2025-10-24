@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 -- Enable treesitter folding (required for function folding)
--- vim.opt.foldmethod = "expr"
+-- -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.opt.foldenable = true
 -- vim.opt.foldlevel = 99
