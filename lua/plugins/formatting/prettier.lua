@@ -1,16 +1,16 @@
 local M = {}
 
----@param ctx ConformCtx
+---@param filename string
 ---@return nil|string
-M.get_config_with_default = function(ctx)
-  local result = vim.fn.system({ "prettier", "--find-config-path", ctx.filename })
+M.get_config_with_default = function(filename)
+  local result = vim.fn.system({ "prettier", "--find-config-path", filename })
 
-  if vim.v.shell_error then
+  if vim.v.shell_error ~= 0 then
     local prettierrc_path = vim.fn.stdpath("config") .. "/extra/prettierrc.json"
 
     return io.open(prettierrc_path, "r") and prettierrc_path or nil
   else
-    return result
+    return vim.fn.trim(result)
   end
 end
 
@@ -30,7 +30,7 @@ return {
             return true
           end,
           append_args = function(_, ctx)
-            local path = M.get_config_with_default(ctx)
+            local path = M.get_config_with_default(ctx.filename)
 
             return path and { "--config", path } or {}
           end,
