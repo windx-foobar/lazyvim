@@ -1,6 +1,9 @@
+---@type LazySpec
 return {
   "chrisgrieser/nvim-rip-substitute",
   cmd = "RipSubstitute",
+  commit = "808f2531",
+  pin = true,
   opts = {},
   keys = {
     {
