@@ -7,7 +7,7 @@ return {
       sources = {
         ---@type snacks.picker.explorer.Config
         explorer = {
-          ignored = false,
+          ignored = true,
           hidden = true,
         },
       },
