@@ -7,3 +7,4 @@ _G.WindxVim = require("util")
 LazyVim.terminal.setup("zsh") -- default: bash
 vim.g.colorscheme = "vscode" -- default: "tokyonight"
 vim.g.vuejs_version = vim.g.vuejs_version or 3 -- custom
+vim.g.lazyvim_php_lsp = "intelephense" -- default: phpactor
