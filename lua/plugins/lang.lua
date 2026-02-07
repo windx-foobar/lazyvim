@@ -5,4 +5,5 @@ return {
   require("plugins.lang.javascript"),
   require("plugins.lang.vue"),
   require("plugins.lang.xml"),
+  require("plugins.lang.mustache"),
 }
